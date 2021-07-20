@@ -1,4 +1,7 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Welcome](README.md)
+* [Quick Start Guide](quick-start-guide.md)
+* [Configuration](configuration.md)
+* [Extending Nodetrace](extending-nodetrace.md)
 
