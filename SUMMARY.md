@@ -8,4 +8,5 @@
 ## Useful Queries
 
 * [AOS Exceptions - General](useful-queries/aos-exceptions-general.md)
+* [AOS Exceptions - Alerts](useful-queries/aos-exceptions-alerts.md)
 
