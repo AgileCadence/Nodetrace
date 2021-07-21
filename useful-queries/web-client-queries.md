@@ -1,4 +1,4 @@
-# Web Client Queries
+# Web Client
 
 What browsers are being used:
 
