@@ -37,7 +37,7 @@ Which jobs throw the most exceptions on the worst AOS?:
 
 ```sql
 AppExceptions 
-| where ClientType == "PC" and AppRoleInstance == "<CLOUDROLEINSTANCE NAME HERE>"
+| where ClientType == "PC" and AppRoleInstance == "<--CLOUDROLEINSTANCE NAME HERE-->"
 | summarize count() by tostring(split(OuterMessage,'\nClasses\\AGCEventHandlers\\`Global_Pre_error:0\nClasses\\AGCEventHandlers\\Global_Pre_error:0\nClasses\\Global\\`error:0\nClasses\\Global\\error:0\nClasses\\Global\\error:0',0) )
 | order by count_ desc 
 ```
