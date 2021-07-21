@@ -1,7 +1,7 @@
 # Form Performance
 
 {% hint style="info" %}
-When a system user requests and form within D365 it will be logged to Application Insights. Spotting trends in the server render time helps guide to performance hotspots.
+When a system user requests a form within D365 it will be logged to Application Insights. Spotting trends in the server render time helps guide to performance hotspots.
 {% endhint %}
 
 ```sql
