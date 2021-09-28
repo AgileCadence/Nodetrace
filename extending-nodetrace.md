@@ -9,7 +9,34 @@ description: Common Scenarios
 Nodetrace provides several APIs developers can use to add logging in their own code. This is powerful, as it doesn't suffer the same limitations as infolog and doesn't hit the database at all.
 
 {% hint style="success" %}
-Scenario One
+Logging jobs
+{% endhint %}
+
+This basic usage of Nodetrace allows logging complicated jobs that may throw exceptions. The using block is helpful as it captures logs even if exceptions are thrown and not caught in this block \(helpful in tts blocks.
+
+```java
+//By default, this logs: company, userid, starttime, endtime, duration
+using(var scope = new AGCNodetraceScopeFactory("CustomJobName"))
+{
+    //Job code here
+    
+    //This will add a single 'Log' custom dimension in Application Insights
+    //It is helpful because it will not roll back if an exception is thrown
+    scope.Log("Something happened!");
+    scope.Log("Something happened AGAIN!");
+    
+    // Get the log string if needed
+    scope.GetLogStr("\r\n");
+    
+    scope.SetProperty("CustomKey", "Any string you want to log.");
+    
+    //If it throws an exception it will still log.
+    // logging is sent once the using block is exited.
+}
+```
+
+{% hint style="success" %}
+Extended Logging: Scenario One
 {% endhint %}
 
 The first scenario is logging custom events, perhaps in custom X++ code or as a way to log errors that are hard to track down in base code. This is an example of logging when payments fail to process successfully. This can be applied however a developer needs to log to Application Insights.
@@ -63,7 +90,7 @@ final class MCRCustPaymTotals_Extension
 ```
 
 {% hint style="success" %}
-Scenario Two
+Extended Logging: Scenario Two
 {% endhint %}
 
 The second scenario is adding performance logging to a retail service, which is pinged by the RCSU when using cPOS/mPOS. This scenario uses the AGCNodetraceScopeFactory which is a wrapper implementing IDisposable so that logging always happens even if exceptions are thrown. IDisposable doesn't suffer the same issues as normal X++ try/catches that have different behaviors depending on the ttslevel.
@@ -113,7 +140,7 @@ public RetailTransactionServiceResponse InvokeExtensionMethod(RetailTransactionS
 ```
 
 {% hint style="success" %}
-Scenario 3
+Extended Logging: Scenario 3
 {% endhint %}
 
 Third scenario is logging exceptions caught in X++. Here is an example of logging exceptions for later analysis.
